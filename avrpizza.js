@@ -52,7 +52,7 @@ module.exports.compile = function avrpizza(package, callback) {
 
     // now we're ready to request compilation by throwing over the tarball to the request side
     requestComp({files: pack, board: board, version: version, service: package.service}, function(error, data) {
-      return callback(error, data);
+      return callback(error, new Buffer(data.data.src));
     });
   });
 };
