@@ -1,6 +1,6 @@
 {
   "name": "avr-pizza",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "bespoke, artisinal, avr-gcc precompiler in zzee air",
   "main": "avrpizza.js",
   "scripts": {
@@ -14,7 +14,8 @@
     "avr",
     "gcc",
     "compiler",
-    "api"
+    "api",
+    "arduino"
   ],
   "author": "Suz Hinton",
   "license": "MIT",
