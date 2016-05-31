@@ -52,7 +52,7 @@ avrpizza.compile(package, function(error, hex) {
 
 ### With external libraries
 
-To compile a simple sketch custom library dependencies, a `libraries` option is needed containing the paths to the top level directory of each library:
+To compile a sketch with custom library dependencies, a `libraries` option is needed containing the paths to the top level directory of each library:
 
 ```js
 var avrpizza = require('avr-pizza');
