@@ -20,6 +20,8 @@ module.exports.compile = function avrpizza(package, callback) {
   pack.entry({name: 'dist', type: 'directory'});
   pack.entry({name: 'sketch', type: 'directory'});
 
+  if (!Array.isArray(libpaths)) return callback(new Error('`libraries` option should be an array'));
+
   // glob library and sketch file dirs
   libpaths.forEach(function(libpath) {
     // look for needed files within library dir
