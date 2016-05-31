@@ -9,7 +9,7 @@ var args = (process.argv.slice(2));
 var argv = parseArgs(args, {});
 var userAction = argv._[0];
 var help = 'Usage:\n' +
-  '  avrpizza flash -s <sketch filepath> -l <library dirpath> -a <arduino name> [-o <output path>] [-c <version>] [-v]\n' +
+  '  avrpizza compile -s <sketch filepath> -l <library dirpath> -a <arduino name> [-o <output path>]\n' +
   '  avrpizza help\n';
 
 function showHelp() {
