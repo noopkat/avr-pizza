@@ -24,6 +24,7 @@ module.exports.compile = function avrpizza(package, callback) {
   libpaths.forEach(function(libpath) {
     // look for needed files within library dir
     var matches = glob.sync("**/{*.h,*.cpp,*.c}", {cwd: libpath, root: path.join(libpath, '/'), matchBase: true});
+    if (!matches.length) return callback(new Error('No library files found in supplied path: ' + libpath));
 
     // save each file into the tarball pack
     matches.forEach(function(filepath) {
@@ -45,6 +46,7 @@ module.exports.compile = function avrpizza(package, callback) {
 
   // save the main sketch file to a special filename that the compiler can look for
   fs.readFile(sketchfile, {encoding: 'utf8'}, function(error, sketchfile) {
+    if (error) return callback(new Error(error.message));
     pack.entry({name: path.join('sketch', 'sketch.ino')}, sketchfile);
 
     // we're done with the tarball
@@ -52,7 +54,8 @@ module.exports.compile = function avrpizza(package, callback) {
 
     // now we're ready to request compilation by throwing over the tarball to the request side
     requestComp({files: pack, board: board, version: version, service: package.service}, function(error, data) {
-      return callback(error, new Buffer(data.data.src));
+      var result = error ? null : new Buffer(data.data.src);
+      return callback(error, result);
     });
   });
 };
