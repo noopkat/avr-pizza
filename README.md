@@ -11,8 +11,6 @@ Avr-pizza is a tool for compiling Arduino sketch files without needing to have t
 
 It makes use of :sparkles: the cloud :sparkles:. Ask, and ye shall receive a freshly baked, delicious compilation in a timely manner.
 
-:cloud: :pizza: :cloud: :pizza: :cloud:
-
 :warning: **This is very much in alpha stage at the moment, so use at your own caution. Holler in this repo's issues if you have something unexpected happen if you give this a try. Thanks** :pray: :two_hearts:
 
 ## Installation
