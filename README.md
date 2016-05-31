@@ -100,7 +100,7 @@ You may repeat the `-l` flag as many times as necessary to supply all the librar
 
 #### Example
 ```bash
-avrpizza compile -s /path/to/mysketch.ino -l /path/to/cool/library/dir -a 'uno' -o ~/stuff/pizzas
+avr-pizza compile -s /path/to/mysketch.ino -l /path/to/cool/library/dir -a 'uno' -o ~/stuff/pizzas
 ```
 
 
