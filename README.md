@@ -27,7 +27,7 @@ npm install avr-pizza
 
 To use this library, a stable internet connection is required.
 
-## Example
+## Examples
 
 
 ### Simple
@@ -92,7 +92,7 @@ npm install -g avr-pizza
 ### Usage
 
 ```bash
-avrpizza compile -s <sketch filepath> -l <library dirpath> -a <arduino name> [-o <output path>]
+avr-pizza compile -s <sketch filepath> -l <library dirpath> -a <arduino name> [-o <output path>]
 ```
 You may repeat the `-l` flag as many times as necessary to supply all the library directory paths you need. 
 
