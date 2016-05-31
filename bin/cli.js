@@ -29,7 +29,7 @@ function compile(options) {
       process.exit(1);
     } else {
       var hexfilename = path.basename(options.sketch);
-      var savelocation = path.join(options.output, hexfilename);
+      var savelocation = path.join(options.output, hexfilename + '.hex');
       // create write stream for entry file
       var ws = fs.createWriteStream(savelocation);
       //write file
