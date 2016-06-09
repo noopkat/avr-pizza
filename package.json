@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/noopkat/avr-pizza#readme",
   "dependencies": {
+    "async": "^2.0.0-rc.6",
     "glob": "^7.0.3",
     "minimist": "^1.2.0",
     "tar-stream": "^1.5.2"
