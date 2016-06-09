@@ -9,7 +9,7 @@ module.exports = {};
 
 module.exports.compile = function avrpizza(package, callback) {
   var libpaths = package.libraries || [];
-  var sketchfile = package.sketch;
+  var sketchfile = path.resolve(package.sketch);
   var board = package.board || 'uno';
   var version = package.version || '10609';
 
@@ -29,7 +29,7 @@ module.exports.compile = function avrpizza(package, callback) {
   var globPaths = [[path.dirname(sketchfile), 'sketch']];
   // if there are libraries included, push them to list
   libpaths.forEach(function(lib) {
-    globPaths.push([lib, 'libs']);
+    globPaths.push([path.resolve(lib), 'libs']);
   });
 
   // prepare a new tarball packing
@@ -65,7 +65,7 @@ module.exports.compile = function avrpizza(package, callback) {
 
     // look for needed files within library dir
     // TODO: look into changing root in options to full path
-    glob("**/{*.h,*.cpp,*.c}", {cwd: searchPath, root: path.join(searchPath, '/'), matchBase: true}, function(error, matches) {
+    glob("**/{*.h,*.cpp,*.c}", {cwd: searchPath, matchBase: true}, function(error, matches) {
       var error = null;
       if (!matches.length && destPath === 'libs') error = new Error('No library files found in supplied path: ' + searchPath);
 
