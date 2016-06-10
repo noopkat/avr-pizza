@@ -9,7 +9,7 @@ var args = (process.argv.slice(2));
 var argv = parseArgs(args, {});
 var userAction = argv._[0];
 var help = 'Usage:\n' +
-  '  avrpizza compile -s <sketch filepath> -l <library dirpath> -a <arduino name> [-o <output path>]\n' +
+  '  avrpizza compile -s <sketch filepath> -l <library dirpath> -a <arduino name> [-o <output path> -b <local ide path>]\n' +
   '  avrpizza help\n';
 
 function showHelp() {
@@ -57,6 +57,12 @@ function handleInput(action, argz) {
           output: argz.o || './',
           debug: argz.v || false
         };
+
+        if (argz.b) {
+          options.builder = {
+            location: argz.b
+          }
+        }
 
         compile(options);
       }
