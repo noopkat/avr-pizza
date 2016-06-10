@@ -1,4 +1,5 @@
 var requestComp = require('./lib/request');
+var localComp = require('./lib/local');
 var path = require('path');
 var glob = require('glob');
 var fs = require('fs');
@@ -12,6 +13,11 @@ module.exports.compile = function avrpizza(package, callback) {
   var sketchfile = path.resolve(package.sketch);
   var board = package.board || 'uno';
   var version = package.version || '10609';
+  var service = package.service || null;
+
+  if (service && service.builder) {
+    // run local building instead
+  }
 
   // if user supplies a string path, just convert it into an array without burdening them with an error
   if (typeof libpaths === 'string') {
