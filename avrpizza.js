@@ -1,13 +1,13 @@
 var requestComp = require('./lib/request');
 var localComp = require('./lib/local');
-var path = require('path');
-var glob = require('glob');
-var fs = require('fs');
-var tar = require('tar-stream');
-var async = require('async');
 var packager = require('./lib/packager');
+var boards = require('./lib/boards');
 
-module.exports.compile = function avrpizza(package, callback) {
+module.exports.compile = function compile(package, callback) {
+  if (boards.indexOf(package.board) === -1) {
+    return callback(new Error('Oops! That board is not supported, sorry.'));
+  }
+
   var builder = package.builder || null;
 
   if (builder && builder.location) {
@@ -15,7 +15,7 @@ module.exports.compile = function avrpizza(package, callback) {
     localComp.requestCompilation(package, callback);
   } else {
     // do remote build
-    packager.preparePackage(package, function(error, pack) {
+    packager.prepare(package, function(error, pack) {
       if (error) return callback(error);
 
       var board = package.board || 'uno';
