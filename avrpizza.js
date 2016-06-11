@@ -1,5 +1,5 @@
 var requestComp = require('./lib/request');
-var localComp = require('./lib/local');
+var localComp = require('avrp-local');
 var packager = require('./lib/packager');
 var boards = require('./lib/boards');
 
