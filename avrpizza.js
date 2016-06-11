@@ -1,4 +1,4 @@
-var requestComp = require('./lib/request');
+var remoteComp = require('./lib/request');
 var localComp = require('avrp-local');
 var packager = require('./lib/packager');
 var boards = require('./lib/boards');
@@ -22,7 +22,7 @@ module.exports.compile = function compile(package, callback) {
       var version = package.version || '10609';
 
       // now we're ready to request compilation by throwing over the tarball to the request side
-      requestComp({files: pack, board: board, version: version, service: package.service}, function(error, data) {
+      remoteComp.requestCompilation({files: pack, board: board, version: version, service: package.service}, function(error, data) {
         var result = error ? null : new Buffer(data.data.src);
 
         return callback(error, result);
