@@ -5,13 +5,29 @@ Bespoke, artisinal, **P**recompiler **I**n **ZZ**ee **A**ir
 
 :cloud: :pizza: :cloud: :pizza: :cloud:
 
+:warning: **This is very much in alpha stage at the moment, so use at your own caution. Holler in this repo's issues if you have something unexpected happen if you give this a try. Thanks** :pray: :two_hearts:
+
 ## What is this?
 
 Avr-pizza is a tool for compiling Arduino sketch files without needing to have the Arduino IDE and related toolchains installed on your machine. 
 
 It makes use of :sparkles: the cloud :sparkles:. Ask, and ye shall receive a freshly baked, delicious compilation in a timely manner.
 
-:warning: **This is very much in alpha stage at the moment, so use at your own caution. Holler in this repo's issues if you have something unexpected happen if you give this a try. Thanks** :pray: :two_hearts:
+### Q: Wait, why is this happening in the cloud again?
+
+A: Glad you asked! A couple of general use cases for leaning on remote compilation:
+
+1. Compile Arduino sketches within a web browser environment (coming soon) :zap:
+
+2. Compile Arduino sketches on users' machines without requiring them to go through downloading and installing the Arduino IDE. This is particularly helpful for nodebots related libraries, which often produce custom sketches tailored to the unique needs of a user setting up their robot. Makes for a less confusing and more friendly 'out of the box' experience all round.
+
+### Q: Can I override 'the cloud' with my local Arduino IDE installation to build on my own machine instead?
+
+A: Yes! See the examples section of this README for details on how to do this.
+
+## Requirements
+
+To use this library, a stable internet connection is required. You'll also need to have [NodeJS](http://nodejs.org) installed on your computer.
 
 ## Installation
 
@@ -22,10 +38,6 @@ Then, run the following in your preferred terminal program:
 ```bash
 npm install avr-pizza
 ```
-
-## Requirements
-
-To use this library, a stable internet connection is required.
 
 ## Examples
 
@@ -69,16 +81,44 @@ avrpizza.compile(package, function(error, hex) {
 
 ```
 
+### Skip the cloud and build locally on your own machine instead
+
+Currently, local builds are available on OSX and Linux, with Windows support coming soon (pull request welcome!).
+
+To compile locally, add a `builder` option to your package object. The `location` key should be set to the path where your local installation of the Arduino IDE is located.
+
+```js
+var avrpizza = require('avr-pizza');
+
+var package = {
+  sketch: '/path/to/mysketch.ino',
+  libraries: ['/path/to/customlib1', '/path/to/customlib2'],
+  board: 'uno',
+  builder: {
+    location: '/Applications/Arduino.app'
+  }
+};
+
+// avrpizza will now build using `/Applications/Arduino.app`
+avrpizza.compile(package, function(error, hex) {
+  console.log(error, hex);
+});
+
+```
+
 ## Package options
 
 You may include the following options in the `package` object passed to the compile method:
 
-+ _String_ **sketch** - the local path to the sketch file you're looking to compile (required)
+### Required
++ _String_ **sketch** - the local path to the sketch file you're looking to compile
  
-+ _Array_ **libraries** - contains local directory paths to any library your sketch uses (optional). Standard Arduino libraries do not need to be included. See standard libraries section in this documentation for the list.
- 
-+ _String_ **board** - the target Arduino board the sketch is to be compiled for (required). See the supported boards section in this documentation to look up the correct string to supply for your chosen board.
++ _String_ **board** - the target Arduino board the sketch is to be compiled for. See the supported boards section in this documentation to look up the correct string to supply for your chosen board.
 
+### Optional
++ _Array_ **libraries** - contains local directory paths to any library your sketch uses (optional). Standard Arduino libraries do not need to be included. See standard libraries section in this documentation for the list.
+
++ _Object_ **builder** - the location of your local installation of the Arduino IDE, only if you wish to compile locally. Contains one key - `location` which should be a path string of where the IDE is located on your hard drive. Eg: `builder: { location: '/Applications/Arduino.app' }`
 ## CLI
 
 Avr-pizza is also a command line tool! Run it on a sketch and a hex file will be saved to disk.
@@ -92,7 +132,7 @@ npm install -g avr-pizza
 ### Usage
 
 ```bash
-avr-pizza compile -s <sketch filepath> -l <library dirpath> -a <arduino name> [-o <output path>]
+avr-pizza compile -s <sketch filepath> -l <library dirpath> -a <arduino name> [-o <output path> -b <local IDE path>]
 ```
 You may repeat the `-l` flag as many times as necessary to supply all the library directory paths you need. 
 
@@ -102,7 +142,6 @@ You may repeat the `-l` flag as many times as necessary to supply all the librar
 ```bash
 avr-pizza compile -s /path/to/mysketch.ino -l /path/to/cool/library/dir -a 'uno' -o ~/stuff/pizzas
 ```
-
 
 ## Supported boards
 

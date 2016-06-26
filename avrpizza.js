@@ -10,6 +10,7 @@ module.exports.compile = function compile(package, callback) {
 
   var builder = package.builder || null;
 
+  // look for presence of local builder preference specified
   if (builder && builder.location) {
     // do local build
     localComp.requestCompilation(package, callback);
