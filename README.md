@@ -83,9 +83,17 @@ avrpizza.compile(package, function(error, hex) {
 
 ### Skip the cloud and build locally on your own machine instead
 
-Currently, local builds are available on OSX and Linux, with Windows support coming soon (pull request welcome!).
+Currently, local builds are supported on OSX, Linux, and Windows.
 
 To compile locally, add a `builder` option to your package object. The `location` key should be set to the path where your local installation of the Arduino IDE is located.
+
+Typical installation locations (adjust accordingly - your installation path might differ slightly):
+
++ OSX: `'/Applications/Arduino.app'`
++ Linux: `'/usr/local/share/arduino-1.6.9'`
++ Windows: `'c:\\Program\ Files\\Arduino'`
+
+Example:
 
 ```js
 var avrpizza = require('avr-pizza');
