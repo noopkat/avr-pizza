@@ -198,5 +198,11 @@ To rejog your memory, they are:
 
 If the only libraries you make use of in your sketch are included in the list above, you may leave out the `libraries` key in your `avrpizza.compile` package options.
 
+## License
 
+MIT
+
+## Privacy
+
+You may read this software's [privacy policy](PRIVACY.md).
 
