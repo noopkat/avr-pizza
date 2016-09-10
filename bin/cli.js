@@ -44,9 +44,10 @@ function handleInput(action, argz) {
       if (!argz.s || !argz.a) {
         showHelp();
         process.exit(1);
-      } else if (boards.indexOf(argz.a) === -1) {
-        console.error(new Error('Oops! That board is not supported, sorry.'));
-        process.exit(1);
+       // lets get rid of this for now until the board archs are settled on
+      // } else if (boards.indexOf(argz.a) === -1) {
+      //   console.error(new Error('Oops! That board is not supported, sorry.'));
+      //   process.exit(1);
       } else {
         // run compile function here if all is well
         var options = {
