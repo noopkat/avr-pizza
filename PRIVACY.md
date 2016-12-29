@@ -12,7 +12,7 @@ We store the least amount of data required to deliver your pizza (compiled code)
 
 **What we don't store:**
 
-1. Your uploaded files - they are deleted immediately after the compilation and return reponse is completed.
+1. Your uploaded files - they are deleted immediately after the compilation and return response is completed.
 
 
 ## Changes
