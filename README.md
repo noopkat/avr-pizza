@@ -1,4 +1,4 @@
-![status not ready](https://img.shields.io/badge/status-alpha-red.svg)
+![status not ready](https://img.shields.io/badge/status-alpha-red.svg) ![powered by Azure](https://img.shields.io/badge/powered%20by-Azure%20%E2%98%81%EF%B8%8F-blue.svg)
 
 # avr-pizza
 Bespoke, artisinal, **P**recompiler **I**n **ZZ**ee **A**ir
